@@ -1,0 +1,6 @@
+apiVersion: v2
+name: pricing-service
+description: Spring Boot 4 pricing service (app only; Postgres/Kafka are managed separately)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

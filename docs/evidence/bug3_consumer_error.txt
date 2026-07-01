@@ -1,0 +1,4 @@
+app  | 20:40:18.428 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] INFO  c.e.s.p.service.PriceConsumerService - Received price update message: {"product_sku":"LAPTOP-001","product_id":1,"amount":1199.99,"currency":"USD","source":"API","timestamp":"2026-07-01T20:40:18.195729258"}
+app  | 20:40:18.436 [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] ERROR c.e.s.p.service.PriceConsumerService - Error processing price update message
+app  | com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (or disable `MapperFeature.REQUIRE_HANDLERS_FOR_JAVA8_TIMES`)
+app  |  at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 105] (through reference chain: com.example.springboot4demo.pricing.dto.PriceEvent["timestamp"])

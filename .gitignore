@@ -1,0 +1,60 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### local-only working notes (never commit)
+.notes/
+*.pdf
+
+### provided base application — kept locally to run, never committed to my deliverables repo
+/src/
+/pom.xml
+/docker-compose.yml
+/Dockerfile
+/.dockerignore
+/.gitattributes
+/mvnw
+/mvnw.cmd
+/.mvn/
+/openapi.yaml
+/api-requests.http
+/HELP.md
+/TODO.md
+
+### internal working scaffold (strategy notes) — not for submission
+/docs/report.md
+
+### prose drafts — final text lives in the report (PDF), these stay local
+/docs/ai-in-devops.md
+/docs/pr-review.md
+/docs/cicd-improvements.md

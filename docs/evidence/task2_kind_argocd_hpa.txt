@@ -1,0 +1,23 @@
+### ArgoCD Application (GitOps)
+NAME          SYNC STATUS   HEALTH STATUS
+pricing-app   Synced        Progressing
+
+### HPA autoscaling under load (Task 1 slow-quote used as load generator)
+NAME          REFERENCE                TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+pricing-app   Deployment/pricing-app   cpu: 250%/65%   2         8         8          4m16s
+
+### Pods scaled up
+NAME                           READY   STATUS    RESTARTS   AGE
+pricing-app-665cf859b7-8595x   0/1     Running   0          16s
+pricing-app-665cf859b7-h68cx   0/1     Running   0          16s
+pricing-app-665cf859b7-l4qt9   0/1     Running   0          16s
+pricing-app-665cf859b7-m542k   1/1     Running   0          4m17s
+pricing-app-665cf859b7-r7gqn   0/1     Running   0          31s
+pricing-app-665cf859b7-rxbnw   1/1     Running   0          4m17s
+pricing-app-665cf859b7-vj9lp   0/1     Running   0          16s
+pricing-app-665cf859b7-zrmgb   0/1     Running   0          31s
+
+### Managed dependencies (separate from the app chart)
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+postgres   1/1     1            1           10m
+kafka      1/1     1            1           10m

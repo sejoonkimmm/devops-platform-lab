@@ -1,0 +1,27 @@
+replicaCount: 2
+image:
+  repository: pricing-service
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  apiPort: 8080
+  mgmtPort: 8081
+config:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/springboot_demo
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+secret:
+  SPRING_DATASOURCE_USERNAME: postgres
+  SPRING_DATASOURCE_PASSWORD: postgres
+resources:
+  requests: { cpu: 200m, memory: 512Mi }
+  limits:   { cpu: "1",   memory: 1Gi }
+probes:
+  port: 8081
+  readinessPath: /actuator/health/readiness
+  livenessPath: /actuator/health/liveness
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 8
+  targetCPUUtilizationPercentage: 65

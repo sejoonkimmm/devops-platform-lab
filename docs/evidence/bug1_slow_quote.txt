@@ -1,0 +1,2 @@
+{"unitPrice":1283.31,"catalogSizeScanned":9,"quantity":430,"estimatedDbReads":464769,"computedAt":"2026-07-01T20:40:47.592461257","subtotal":551824.02,"channel":"WEB","sku":"LAPTOP-001","durationMs":70862}
+[quote q=430] http=200  time_total=70.921983s

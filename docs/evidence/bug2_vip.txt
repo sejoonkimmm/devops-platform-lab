@@ -1,0 +1,2 @@
+{"sku":"LAPTOP-001","quotedPrice":1208.99,"segment":"vip"}
+[vip]  http=200
