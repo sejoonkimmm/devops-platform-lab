@@ -1,0 +1,12 @@
+replicaCount: 1
+image:
+  tag: "sha-9bb4e89"
+resources:
+  requests: { cpu: 100m, memory: 384Mi }
+  limits:   { cpu: 500m, memory: 768Mi }
+autoscaling:
+  enabled: false
+route:
+  host: pricing-dev.local
+pdb:
+  enabled: false

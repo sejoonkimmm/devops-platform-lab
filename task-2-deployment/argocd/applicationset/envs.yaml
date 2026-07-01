@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pricing-envs
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: prod
+  template:
+    metadata:
+      name: "pricing-{{env}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sejoonkimmm/devops-platform-lab.git
+        targetRevision: main
+        path: task-2-deployment/helm-chart
+        helm:
+          valueFiles:
+            - "values-{{env}}.yaml"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "pricing-{{env}}"
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions:
+          - CreateNamespace=true

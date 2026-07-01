@@ -1,0 +1,19 @@
+# Task 2 evidence — live app-of-apps on kind (captured 2026-07-03 20:25)
+
+## ArgoCD app-of-apps tree (root manages infra + pricing)
+infra           Synced   Healthy
+platform-root   Synced   Healthy
+pricing         Synced   Healthy
+
+## pricing namespace: the app, managed deps, HPA
+deployment.apps/kafka      1/1   1     1     44h
+deployment.apps/postgres   1/1   1     1     44h
+deployment.apps/pricing    2/2   2     2     33h
+horizontalpodautoscaler.autoscaling/pricing   Deployment/pricing   cpu: 12%/65%   2     8     2     33h
+
+## gateway api: gateway programmed, route attached
+gateway.gateway.networking.k8s.io/pricing-gateway   traefik         True   28h
+httproute.gateway.networking.k8s.io/pricing   ["pricing.local"]   28h
+
+## image pulled from ghcr
+ghcr.io/sejoonkimmm/springboot-4-demo:sha-9bb4e89

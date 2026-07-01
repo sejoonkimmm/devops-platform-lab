@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pricing
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sejoonkimmm/devops-platform-lab.git
+    targetRevision: main
+    path: task-2-deployment/helm-chart
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pricing
+  syncPolicy:
+    automated: { prune: true, selfHeal: true }
+    syncOptions:
+      - CreateNamespace=true

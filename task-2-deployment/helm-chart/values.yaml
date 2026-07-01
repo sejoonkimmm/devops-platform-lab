@@ -1,7 +1,7 @@
 replicaCount: 2
 image:
-  repository: pricing-service
-  tag: latest
+  repository: ghcr.io/sejoonkimmm/springboot-4-demo
+  tag: "sha-9bb4e89"
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
@@ -25,3 +25,10 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 8
   targetCPUUtilizationPercentage: 65
+route:
+  enabled: true
+  gatewayName: pricing-gateway
+  host: pricing.local
+pdb:
+  enabled: true
+  minAvailable: 1

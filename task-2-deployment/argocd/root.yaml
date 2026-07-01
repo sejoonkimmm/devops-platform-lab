@@ -1,21 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pricing-app
+  name: platform-root
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/sejoonkimmm/devops-platform-lab.git
     targetRevision: main
-    path: deploy/chart
-    helm: {}
+    path: task-2-deployment/argocd/apps
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: pricing
+    namespace: argocd
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: { prune: true, selfHeal: true }
     syncOptions:
       - CreateNamespace=true

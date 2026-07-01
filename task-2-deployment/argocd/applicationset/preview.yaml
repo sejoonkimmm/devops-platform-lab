@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pricing-preview
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - pullRequest:
+        github:
+          owner: sejoonkimmm
+          repo: devops-platform-lab
+          tokenRef:
+            secretName: github-scm
+            key: token
+        requeueAfterSeconds: 60
+  template:
+    metadata:
+      name: "pricing-pr-{{.number}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/sejoonkimmm/devops-platform-lab.git
+        targetRevision: "{{.head_sha}}"
+        path: task-2-deployment/helm-chart
+        helm:
+          valueFiles:
+            - values-dev.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "pricing-pr-{{.number}}"
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions:
+          - CreateNamespace=true

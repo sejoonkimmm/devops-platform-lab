@@ -1,4 +1,3 @@
-# Managed dependency — NOT part of the app Helm chart (in prod this is a managed Postgres).
 apiVersion: v1
 kind: Namespace
 metadata: { name: pricing }

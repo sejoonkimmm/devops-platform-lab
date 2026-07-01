@@ -1,4 +1,3 @@
-# Managed dependency — single-node KRaft Kafka for the local cluster.
 apiVersion: apps/v1
 kind: Deployment
 metadata: { name: kafka, namespace: pricing }
