@@ -1,14 +1,13 @@
-# Improved pipeline. See docs/cicd-improvements.md for the reasoning behind each change.
 trigger:
   branches:
     include:
       - main
 
 pool:
-  vmImage: ubuntu-24.04            # pinned, not 'latest' -> reproducible builds
+  vmImage: ubuntu-24.04
 
 variables:
-  - group: app-secrets             # secrets come from a Library group backed by Key Vault, never inline
+  - group: app-secrets
   - name: NODE_VERSION
     value: '20.x'
   - name: npm_config_cache
@@ -22,8 +21,8 @@ stages:
         steps:
           - template: templates/setup-node.yml
           - script: npm run lint
-            displayName: ESLint       # no continueOnError -> lint can fail the build again
-      - job: UnitTests                # no dependsOn -> runs in parallel with Lint
+            displayName: ESLint
+      - job: UnitTests
         steps:
           - template: templates/setup-node.yml
           - script: npm test
@@ -38,7 +37,7 @@ stages:
           - script: npm run test:integration
             displayName: Integration tests
             env:
-              DB_PASSWORD: $(DB_PASSWORD)   # injected from the secret group at runtime
+              DB_PASSWORD: $(DB_PASSWORD)
 
   - stage: Build
     dependsOn: IntegrationTest
@@ -55,7 +54,7 @@ stages:
     dependsOn: Build
     jobs:
       - deployment: DeployProd
-        environment: production      # environment gate = manual approval + deploy history + rollback target
+        environment: production
         strategy:
           runOnce:
             deploy:

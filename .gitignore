@@ -32,9 +32,19 @@ build/
 ### VS Code ###
 .vscode/
 
+### macOS cruft
+.DS_Store
+
+### python
+__pycache__/
+*.pyc
+
 ### local-only working notes (never commit)
 .notes/
 *.pdf
+
+### the writeup itself is the submission to DKV, not repo content
+/report.html
 
 ### provided base application — kept locally to run, never committed to my deliverables repo
 /src/
@@ -58,3 +68,7 @@ build/
 /docs/ai-in-devops.md
 /docs/pr-review.md
 /docs/cicd-improvements.md
+/docker-compose.override.yml
+
+### presentation working file — the PDF is the submission
+/deck/

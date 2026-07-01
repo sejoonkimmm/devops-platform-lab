@@ -1,5 +1,3 @@
-# Shared setup: checkout, Node, cached deps. Reused by every job so install happens
-# the same way once per job instead of a slow, uncached `npm install` copy-pasted everywhere.
 steps:
   - checkout: self
   - task: NodeTool@0
