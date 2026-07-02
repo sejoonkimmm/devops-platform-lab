@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: weekly-report
+  namespace: pricing
+spec:
+  schedule: "0 6 * * 1"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: weekly-report
+              image: weekly-report:latest
+              envFrom:
+                - secretRef:
+                    name: report-db
+              env:
+                - name: REPORT_OUTPUT_DIR
+                  value: /data/reports
+              volumeMounts:
+                - name: reports
+                  mountPath: /data/reports
+          volumes:
+            - name: reports
+              persistentVolumeClaim:
+                claimName: weekly-reports
