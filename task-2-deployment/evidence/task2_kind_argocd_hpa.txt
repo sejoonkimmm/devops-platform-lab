@@ -1,4 +1,4 @@
-# Task 2 evidence — live app-of-apps on kind (captured 2026-07-03 20:25)
+# Task 2 evidence: live app-of-apps on kind (captured 2026-07-03 20:25)
 
 ## ArgoCD app-of-apps tree (root manages infra + pricing)
 infra           Synced   Healthy

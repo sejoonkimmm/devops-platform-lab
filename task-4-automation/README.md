@@ -1,14 +1,14 @@
-# Task 4 — Weekly business report
+# Task 4: Weekly business report
 
 Every Monday the product manager pulls a few business numbers from the database by
 hand. `weekly_report.py` does that run, writes one CSV per ISO week, and the business
 reporting tool picks the file up. No Grafana involved.
 
 Files:
-- `weekly_report.py` — the job. Reads the metrics, writes `weekly_metrics_<year>_W<week>.csv`.
-- `reporting-role.sql` — the read-only database role the job uses.
-- `cronjob.yaml` — runs it every Monday on the cluster.
-- `Dockerfile`, `requirements.txt` — build the job image.
+- `weekly_report.py` is the job. It reads the metrics and writes `weekly_metrics_<year>_W<week>.csv`.
+- `reporting-role.sql` creates the read-only database role the job uses.
+- `cronjob.yaml` runs it every Monday on the cluster.
+- `Dockerfile` and `requirements.txt` build the job image.
 
 ## Credentials
 

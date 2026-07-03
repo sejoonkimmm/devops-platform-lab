@@ -1,4 +1,4 @@
-# Task 6 — Pull request review
+# Task 6: Pull request review
 
 Reviewing `MessageController` from a DevOps and observability angle. The code works, so this is about running it in production, not about whether it compiles.
 

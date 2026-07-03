@@ -26,15 +26,15 @@ Rollback: revert the git commit (ArgoCD re-syncs to it) or `argocd app rollback 
 
 ## Files
 
-- `root.yaml` — the only object you apply by hand; owns the whole platform.
-- `apps/` — the children the root manages: `infra` and `pricing`.
-- `application.yaml` — a single plain Application. The simplest alternative, kept
+- `root.yaml` is the only object you apply by hand. It owns the whole platform.
+- `apps/` holds the children the root manages, `infra` and `pricing`.
+- `application.yaml` is a single plain Application, the simplest alternative, kept
   for reference against the app-of-apps choice.
-- `applicationset/envs.yaml` — one template renders the chart into dev and prod
-  from a per-env values file, so environments do not drift by hand-editing. Not
+- `applicationset/envs.yaml` renders the chart into dev and prod from one template;
+  each env gets its own values file, so environments do not drift by hand-editing. Not
   synced by the root (it would collide with the live `pricing` app); apply on its
   own for the per-env layout.
-- `applicationset/preview.yaml` — one ephemeral stack per open pull request. Smoke
+- `applicationset/preview.yaml` creates one temporary stack per open pull request. Smoke
   and contract tests run against the preview copy before merge, which is how a
   silent bad version is caught before prod. The pullRequest generator needs a
   GitHub token, so it ships as a manifest, not run on kind:

@@ -1,4 +1,4 @@
-# Task 5 — Improve the CI/CD pipeline
+# Task 5: Improve the CI/CD pipeline
 
 Rewritten pipeline: `azure-pipelines.yml` (+ `templates/setup-node.yml`), in this folder.
 
@@ -29,7 +29,7 @@ These matter more than speed.
 
 - **Hardcoded secrets in the YAML.** `DB_PASSWORD`, `API_KEY`, and `NPM_TOKEN` are committed in plain text. Two problems, not one:
   1. They must move out of the file into a secret variable group backed by Key Vault (done in the rewrite via `- group: app-secrets`).
-  2. **They are already leaked.** Anything committed to git is in the history and must be treated as compromised. Moving them is not enough. All three have to be rotated, and the git history scrubbed. This is the first thing I'd do, before touching performance.
+  2. **They are already leaked.** Anything committed to git is in the history and must be treated as compromised. Moving them is not enough. All three have to be rotated, and cleaned out of the git history. This is the first thing I'd do, before touching performance.
 - **`continueOnError: true` on lint.** Lint failures were being swallowed, so the "passing" pipeline could still merge code that violates the lint rules. Removed, so lint can fail the build again.
 - **Deploy runs on every push to `main` with no gate.** No approval, no environment, no rollback path. One bad merge goes straight to production. The rewrite deploys through an `environment: production`, which adds a manual approval, deployment history, and a rollback target.
 - **No verification after deploy.** The release step fires a `curl` and assumes success. Added `set -euo pipefail` and `curl -sf` so a failed release actually fails the job, but a real setup should also run a smoke test and be able to roll back.
