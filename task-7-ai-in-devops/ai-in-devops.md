@@ -1,28 +1,13 @@
 # Task 7 — AI in DevOps
 
-When someone asks what I do for a living, I don't round it down to "software engineer." I say DevOps engineer. Most people have no idea what that means, and I've never minded. I keep explaining until they get the actual thing I do, not the blurred version of it.
+I have used AI tools daily for about three years, and my position is simple. The value was never whether you use AI, but whether you build the system around the place where it fails. Most of my hours go into infrastructure config, Helm charts, manifests and pipelines, and that is where AI returns the most time. It is also where it broke on me.
 
-I've spent years in this role, and it's one of the few choices I'd make again without a second of thought. I'm not saying that as a warm-up. It's the frame for everything below. I'm not a neutral observer of where this field goes. I have a stake in it.
+Last February an AI assistant kept adding values to a Helm chart that looked reasonable and did not exist in the upstream chart. The output read like valid config, so I trusted it, and lost an afternoon chasing a problem that was never real. Nothing reached production, since our environments split cleanly into dev, stage and prod, but the time was gone.
 
-Here's what I actually believe, after using these tools every day for about three years. The value was never whether you use AI. It's whether you build the system around the place where AI fails.
+That taught me which failure to watch for. AI does not fail loudly; it produces something plausible. In application code a wrong guess usually throws. In infrastructure config it can look right, pass review, and fail later without a sound, the same shape as the silent Kafka bug in Task 1.
 
-That sounds obvious. It's not how most people use it.
+I did the opposite of stopping. Every Helm change now goes through a small harness of five Haiku agents that scrape the official chart and docs, fact-check each other, and let only verified values through. The error has not come back. I fixed an AI problem with more AI, aimed at the exact point of failure.
 
-From my own experience, the biggest opportunity isn't the exciting one. It's the daily grind of writing and changing infrastructure config. Helm charts, Kubernetes manifests, pipeline files. That's where my real hours go, and it's where AI gives the most time back.
+The risk I actually worry about is that we stop checking. The more fluent the output gets, the easier it is to hand over the one part of the job that was never safe to hand over, which is judging whether the thing is true. The skill I care about most is not prompting; it is knowing which output I am allowed to believe, and building the checks that decide it for me.
 
-The same work also showed me exactly where AI breaks.
-
-Last February, when everyone was busy with harness engineering, I had an AI assistant editing a Helm chart. It kept adding values that looked completely reasonable and did not exist in the official chart. Keys that were never defined upstream. The output read like valid config, so I trusted it, and then lost hours chasing a problem that was never real. Our environments are split cleanly into dev, stage and prod, so nothing bad reached production. But I still burned an afternoon in the lower environments debugging a value that didn't exist.
-
-That's the failure mode I watch for now. AI doesn't fail loudly. It fails by producing something plausible. In application code a wrong guess usually throws an error. In infrastructure config a wrong guess can look right, pass review, and fail quietly later. For a DevOps engineer that's the dangerous kind of wrong.
-
-I didn't stop using AI after that. I did the opposite. Before any change to a Helm chart now, I run a small harness of five Haiku agents. They scrape the official chart and the official docs, then fact-check each other before anything reaches my editor. Only verified values get through. Since I attached that harness to this kind of work, the same error hasn't come back.
-
-That's the thesis in practice. I didn't fix an AI problem by using less AI. I fixed it by designing the system around the exact point where it was failing.
-
-That's also where I put the real risk. It isn't that AI writes bad code. It's that we stop checking. The more fluent the output gets, the easier it is to hand over the one part of the job that was never safe to hand over, which is judging whether the thing is actually true. Reliability, security and trust all sit downstream of that one habit. The skill I care about most now isn't prompting. It's knowing which output I'm allowed to believe, and building the checks that decide it for me.
-
-<!-- PLACEHOLDER: replace with your real "next 12 months" voice. Draft below is pulled from your own trajectory. -->
-Over the next year I want to take that harness idea past config. Most of mine today guard narrow tasks. I want to see how far the pattern goes. Agents that check each other on incident response, that read my Terraform before it ever plans, that catch the plausible-but-wrong answer before I see it. I'm also curious where the line is. At some point a check that's itself AI needs its own check, and I want to find where that stops being worth it.
-
-That's also why I still introduce myself the way I do. The job isn't disappearing into the tools. It's moving into the space around them, into deciding what to trust and building the things that enforce it. That's the work I want to keep doing. It's why I'd still say DevOps engineer, out loud, every time.
+Over the next year I want to push the harness idea past config, into agents that cross-check incident response, read my Terraform before it plans, and catch the plausible-but-wrong answer before I see it. I also want to find where that stops being worth it, because at some point a check that is itself AI needs its own check. The job is not disappearing into the tools; it is moving into deciding what to trust.
