@@ -43,7 +43,7 @@ __pycache__/
 notes/
 *.pdf
 
-### the writeup itself is the submission to DKV, not repo content
+### the writeup itself is the submission, not repo content
 /report.html
 
 ### provided base application, kept locally to run, never committed to my deliverables repo

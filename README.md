@@ -13,7 +13,7 @@ screenshots, and it reads on its own. This repository holds the code the writeup
 A Helm chart, a dashboard, a pipeline and a script are easier to read as real files than
 as long blocks pasted into a document, so they live here and the PDF links to them.
 The prose answers (the code review and the essay) live in the writeup only.
-The writeup itself is the submission to DKV and is not tracked in this repository.
+The writeup itself is the submission and is not tracked in this repository.
 
 ## Where each task lives
 
