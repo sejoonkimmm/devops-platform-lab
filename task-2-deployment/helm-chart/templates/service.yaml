@@ -4,7 +4,12 @@ metadata:
   name: {{ .Release.Name }}
 spec:
   type: {{ .Values.service.type }}
-  selector: { app: {{ .Release.Name }} }
+  selector:
+    app: {{ .Release.Name }}
   ports:
-    - { name: http, port: {{ .Values.service.apiPort }}, targetPort: http }
-    - { name: mgmt, port: {{ .Values.service.mgmtPort }}, targetPort: mgmt }
+    - name: http
+      port: {{ .Values.service.apiPort }}
+      targetPort: http
+    - name: mgmt
+      port: {{ .Values.service.mgmtPort }}
+      targetPort: mgmt

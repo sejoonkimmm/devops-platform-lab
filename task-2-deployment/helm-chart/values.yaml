@@ -16,8 +16,11 @@ secret:
 # cpu is requested but not limited, so the JVM is never throttled.
 # memory request equals limit, since memory is incompressible.
 resources:
-  requests: { cpu: 200m, memory: 1Gi }
-  limits:   { memory: 1Gi }
+  requests:
+    cpu: 200m
+    memory: 1Gi
+  limits:
+    memory: 1Gi
 probes:
   port: 8081
   readinessPath: /actuator/health/readiness

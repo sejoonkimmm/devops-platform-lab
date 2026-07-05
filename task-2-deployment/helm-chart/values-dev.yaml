@@ -2,8 +2,11 @@ replicaCount: 1
 image:
   tag: "sha-9bb4e89"
 resources:
-  requests: { cpu: 100m, memory: 768Mi }
-  limits:   { memory: 768Mi }
+  requests:
+    cpu: 100m
+    memory: 768Mi
+  limits:
+    memory: 768Mi
 autoscaling:
   enabled: false
 route:

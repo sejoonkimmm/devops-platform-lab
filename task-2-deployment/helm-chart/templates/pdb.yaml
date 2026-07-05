@@ -6,5 +6,6 @@ metadata:
 spec:
   minAvailable: {{ .Values.pdb.minAvailable }}
   selector:
-    matchLabels: { app: {{ .Release.Name }} }
+    matchLabels:
+      app: {{ .Release.Name }}
 {{- end }}
