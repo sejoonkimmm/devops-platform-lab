@@ -12,6 +12,7 @@ The PDF is the writeup. It carries the reasoning, the decisions I made and the
 screenshots, and it reads on its own. This repository holds the code the writeup points to.
 A Helm chart, a dashboard, a pipeline and a script are easier to read as real files than
 as long blocks pasted into a document, so they live here and the PDF links to them.
+The prose answers (the code review and the essay) live in the writeup only.
 The writeup itself is the submission to DKV and is not tracked in this repository.
 
 ## Where each task lives
@@ -23,8 +24,8 @@ The writeup itself is the submission to DKV and is not tracked in this repositor
 | 3. Design a dashboard | Grafana dashboard model | `task-3-dashboard/` |
 | 4. Automate a manual task | scheduled reporting job | `task-4-automation/` |
 | 5. Improve the CI/CD pipeline | rebuilt pipeline | `task-5-cicd/` |
-| 6. Code review | PR review comment | `task-6-code-review/` |
-| 7. AI in DevOps | short essay | `task-7-ai-in-devops/` |
+| 6. Code review | PR review comment | in the writeup |
+| 7. AI in DevOps | short essay | in the writeup |
 
 ## Run it
 
