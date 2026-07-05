@@ -15,15 +15,24 @@ spec:
       template:
         spec:
           restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
           containers:
             - name: weekly-report
-              image: weekly-report:latest
+              image: ghcr.io/sejoonkimmm/weekly-report:1.0.0
               envFrom:
                 - secretRef:
                     name: report-db
               env:
                 - name: REPORT_OUTPUT_DIR
                   value: /data/reports
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+                limits:
+                  memory: 256Mi
               volumeMounts:
                 - name: reports
                   mountPath: /data/reports

@@ -50,6 +50,10 @@ history when it silently stops.
 ## Run it
 
 ```bash
+# build and push the job image (pinned tag; the cronjob pulls this)
+docker build -t ghcr.io/sejoonkimmm/weekly-report:1.0.0 .
+docker push ghcr.io/sejoonkimmm/weekly-report:1.0.0
+
 # one time: create the read-only role
 psql -h <db-host> -U <admin> -d springboot_demo -f reporting-role.sql
 
