@@ -13,7 +13,8 @@ config:
 secret:
   SPRING_DATASOURCE_USERNAME: postgres
   SPRING_DATASOURCE_PASSWORD: postgres
-# cpu is requested but not limited, so the JVM is never throttled.
+# cpu is requested but not limited. a cpu limit only throttles, and a throttled
+# pod looks healthy on the graph while feeling slow to callers.
 # memory request equals limit, since memory is incompressible.
 resources:
   requests:
