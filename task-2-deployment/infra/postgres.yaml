@@ -2,6 +2,10 @@ apiVersion: v1
 kind: Namespace
 metadata: { name: pricing }
 ---
+# Stand-in for a managed database (RDS). On a real cluster this would be a
+# postgres operator (Zalando / CloudNativePG) or a managed service, which is
+# why it lives outside the app chart: the DB lifecycle is not an app release.
+# No PVC on purpose; this is a throwaway demo cluster.
 apiVersion: apps/v1
 kind: Deployment
 metadata: { name: postgres, namespace: pricing }

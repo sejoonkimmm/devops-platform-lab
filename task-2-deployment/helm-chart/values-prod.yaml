@@ -2,8 +2,8 @@ replicaCount: 3
 image:
   tag: "1.0.0"
 resources:
-  requests: { cpu: 500m, memory: 768Mi }
-  limits:   { cpu: "2",  memory: 1536Mi }
+  requests: { cpu: 500m, memory: 1536Mi }
+  limits:   { memory: 1536Mi }
 autoscaling:
   enabled: true
   minReplicas: 3

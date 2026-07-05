@@ -22,7 +22,9 @@ kubectl -n argocd get applications
 kubectl -n pricing get pods,svc,hpa
 ```
 
-Rollback: revert the git commit (ArgoCD re-syncs to it) or `argocd app rollback pricing <revision>`.
+Rollback: revert the git commit (ArgoCD re-syncs to it), or `argocd app rollback pricing <revision>`
+after pausing auto-sync; Argo refuses a rollback while automated sync is on. There is no
+`helm rollback` here: ArgoCD renders the chart with `helm template`, so no Helm release exists.
 
 ## Files
 
@@ -53,5 +55,6 @@ The image comes from GHCR. The app repository
 ([springboot-4-demo](https://github.com/sejoonkimmm/springboot-4-demo)) builds and
 pushes `ghcr.io/sejoonkimmm/springboot-4-demo` on every push, tagged `sha-<short>`,
 plus a semver tag on release tags. Promoting to prod is a reviewed commit here that
-bumps the pinned version. The remaining automation step would be ArgoCD Image Updater
-(or a Renovate rule) to bump the dev tag automatically.
+bumps the pinned version. The remaining automation step is the tag bump itself: the app
+repo's CI opening a bump PR against this repo (so the deploy approval is the PR review),
+or ArgoCD Image Updater / a Renovate rule doing the same without the PR ceremony.
